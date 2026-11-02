@@ -88,8 +88,3 @@ for (const { title, args, expected } of additionalCases) {
     assert.equal(result.stderr, '');
   });
 }
-
-// CIの失敗検出を確認するための一時的な実験用テスト。
-test('CI動作確認：意図的に失敗するテスト', () => {
-  assert.strictEqual(1, 2);
-});
