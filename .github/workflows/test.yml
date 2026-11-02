@@ -1,0 +1,29 @@
+name: Node.js Tests
+
+# mainへのPushと、mainを対象とするPull Requestで実行する。
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリのコードを取得する。
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      # テストに使用するNode.js 24を設定する。
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      # 外部パッケージを追加せず、Node.js標準のテストを実行する。
+      - name: Run tests
+        run: node --test tests/index.test.js
